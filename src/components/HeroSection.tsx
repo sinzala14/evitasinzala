@@ -37,10 +37,15 @@ export function HeroSection({
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-5 pt-8 pb-12 sm:px-6 sm:pt-12 sm:pb-16 lg:grid-cols-12 lg:items-center lg:gap-12 lg:pt-16 lg:pb-20">
         {/* Left: headline */}
         <div className="min-w-0 lg:col-span-7">
-          <Star
-            className="h-8 w-8 sm:h-9 sm:w-9 fill-[#FF9CC4] text-[#FF9CC4] drop-shadow-[0_0_14px_rgba(255,156,196,0.7)]"
-            aria-hidden="true"
-          />
+          <div className="flex items-center gap-2.5">
+            <Star
+              className="h-8 w-8 sm:h-9 sm:w-9 shrink-0 fill-[#FF9CC4] text-[#FF9CC4] drop-shadow-[0_0_14px_rgba(255,156,196,0.7)]"
+              aria-hidden="true"
+            />
+            <span className="text-sm sm:text-base font-semibold tracking-wide text-[#FFD6E6]">
+              Certified Professional
+            </span>
+          </div>
 
           <h1 className="mt-5 font-display text-[2.35rem] leading-[1.05] sm:text-5xl lg:text-6xl font-semibold tracking-tight text-balance">
             Sweet, Calm &amp;{' '}
