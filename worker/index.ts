@@ -51,8 +51,15 @@ async function callGeminiApi(
   apiKey: string,
   sanitizedMessages: IncomingMessage[]
 ): Promise<Response> {
-  const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+  const models = [
+    'gemini-2.5-flash',
+    'gemini-2.5-flash-lite',
+    'gemini-2.0-flash',
+    'gemini-2.0-flash-lite',
+    'gemini-1.5-flash',
+  ];
   let lastError: Error | null = null;
+  let sawRateLimitOrOverload = false;
 
   for (const model of models) {
     try {
@@ -109,6 +116,12 @@ async function callGeminiApi(
         continue;
       }
 
+      if (res.status === 503 || res.status === 429 || res.status === 500 || res.status === 502) {
+        // Model temporarily overloaded or rate-limited — automatically try the next model
+        sawRateLimitOrOverload = true;
+        continue;
+      }
+
       if (!res.ok) {
         const errBody = await res.text();
         let message = `Gemini API error (status ${res.status})`;
@@ -128,16 +141,6 @@ async function callGeminiApi(
                 'Unable to authenticate with Gemini. Please verify your GEMINI_API_KEY secret on Cloudflare.',
             }),
             { status: 403, headers: JSON_HEADERS }
-          );
-        }
-
-        if (res.status === 429) {
-          return new Response(
-            JSON.stringify({
-              error:
-                'The AI Spa Therapist is temporarily busy. Please wait a moment and try your question again.',
-            }),
-            { status: 429, headers: JSON_HEADERS }
           );
         }
 
@@ -197,6 +200,16 @@ async function callGeminiApi(
     } catch (err: unknown) {
       lastError = err instanceof Error ? err : new Error(String(err));
     }
+  }
+
+  if (sawRateLimitOrOverload && !lastError) {
+    return new Response(
+      JSON.stringify({
+        error:
+          'The AI Spa Therapist is temporarily busy. Please wait a few seconds and try your question again.',
+      }),
+      { status: 503, headers: JSON_HEADERS }
+    );
   }
 
   return new Response(
