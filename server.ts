@@ -156,9 +156,19 @@ async function startServer(): Promise<void> {
             .slice(0, 2)
         : [];
 
+      const stripStars = (t: string) =>
+        t
+          .replace(/\*\*/g, '')
+          .replace(/^\s*\*\s+/gm, '• ')
+          .replace(/\*/g, '')
+          .replace(/^#+\s+/gm, '')
+          .trim();
+
       res.json({
-        reply: typeof parsed.reply === 'string' ? parsed.reply : rawText,
-        skinCareTip: typeof parsed.skinCareTip === 'string' ? parsed.skinCareTip : '',
+        reply: stripStars(typeof parsed.reply === 'string' ? parsed.reply : rawText),
+        skinCareTip: stripStars(
+          typeof parsed.skinCareTip === 'string' ? parsed.skinCareTip : ''
+        ),
         recommendedTreatments,
       });
     } catch (err: unknown) {

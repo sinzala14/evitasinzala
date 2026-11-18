@@ -34,11 +34,21 @@ Evita Sinzala's real services (Certified Cosmetology Professional, ASHCA School 
 - makeup_hair: Makeup & Hair Styling (K200–K450: natural soft glam, occasion makeup, silk press/blowout, braids & styling, bridal/VIP package up to K450)
 
 Guidelines:
-1. Keep replies clear, calm, practical, and easy to read (about 90 to 160 words, using short paragraphs or clean numbered/bulleted steps without heavy markdown clutter).
-2. Always give actionable healthy skin tips or healthy wellness tips (hydration, sleep, gentle cleansers, SPF, post-treatment aftercare, nail/hair health, muscle stretching, stress relief).
-3. Include a concise, memorable takeaway tip in "skinCareTip" (max 18 words).
-4. In "recommendedTreatments", include 0 to 2 matching treatment IDs strictly from: ["massage", "facial", "scrub", "waxing", "manipedi", "makeup_hair"] only when genuinely relevant to the user's question.
-5. For persistent rashes, infections, severe acne, or medical conditions, kindly advise consulting a licensed dermatologist or healthcare clinician alongside gentle daily skincare.`;
+1. Keep replies clear, calm, practical, and easy to read (about 90 to 160 words, using short paragraphs or clean numbered steps).
+2. NEVER use markdown formatting or asterisks (** or *) anywhere in your response. Write clean plain text only.
+3. Always give actionable healthy skin tips or healthy wellness tips (hydration, sleep, gentle cleansers, SPF, post-treatment aftercare, nail/hair health, muscle stretching, stress relief).
+4. Include a concise, memorable takeaway tip in "skinCareTip" (max 18 words, plain text with no asterisks).
+5. In "recommendedTreatments", include 0 to 2 matching treatment IDs strictly from: ["massage", "facial", "scrub", "waxing", "manipedi", "makeup_hair"] only when genuinely relevant to the user's question.
+6. For persistent rashes, infections, severe acne, or medical conditions, kindly advise consulting a licensed dermatologist or healthcare clinician alongside gentle daily skincare.`;
+
+function stripMarkdownStars(text: string): string {
+  return text
+    .replace(/\*\*/g, '')
+    .replace(/^\s*\*\s+/gm, '• ')
+    .replace(/\*/g, '')
+    .replace(/^#+\s+/gm, '')
+    .trim();
+}
 
 const JSON_HEADERS = {
   'Content-Type': 'application/json',
@@ -191,8 +201,12 @@ async function callGeminiApi(
 
       return new Response(
         JSON.stringify({
-          reply: typeof parsed.reply === 'string' ? parsed.reply : rawText,
-          skinCareTip: typeof parsed.skinCareTip === 'string' ? parsed.skinCareTip : '',
+          reply: stripMarkdownStars(
+            typeof parsed.reply === 'string' ? parsed.reply : rawText
+          ),
+          skinCareTip: stripMarkdownStars(
+            typeof parsed.skinCareTip === 'string' ? parsed.skinCareTip : ''
+          ),
           recommendedTreatments,
         }),
         { status: 200, headers: JSON_HEADERS }

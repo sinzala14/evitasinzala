@@ -17,6 +17,15 @@ interface AiTherapistSectionProps {
   onAddTreatmentFromAi: (treatmentId: SpaTreatment['id']) => void;
 }
 
+function cleanText(text: string): string {
+  return text
+    .replace(/\*\*/g, '')
+    .replace(/^\s*\*\s+/gm, '• ')
+    .replace(/\*/g, '')
+    .replace(/^#+\s+/gm, '')
+    .trim();
+}
+
 const INITIAL_ASSISTANT_MESSAGE: TherapistMessage = {
   id: 'welcome-tip',
   role: 'model',
@@ -261,7 +270,7 @@ export function AiTherapistSection({
                           : 'bg-[#FFF5F9] text-[#421C2D] border border-[#FCE0EC]'
                       }`}
                     >
-                      <p className="whitespace-pre-line">{msg.text}</p>
+                      <p className="whitespace-pre-line">{cleanText(msg.text)}</p>
 
                       {!isUser && msg.skinCareTip && (
                         <div className="mt-2.5 border-t border-[#F5D3DF] pt-2">
@@ -269,7 +278,7 @@ export function AiTherapistSection({
                             Little Glow Note
                           </p>
                           <p className="mt-0.5 text-xs text-[#6B3B50]">
-                            {msg.skinCareTip}
+                            {cleanText(msg.skinCareTip)}
                           </p>
                         </div>
                       )}
