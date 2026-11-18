@@ -154,7 +154,7 @@ export function BookingSection({ booking, onChangeBooking }: BookingSectionProps
 
         <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
           {/* Left Form Column */}
-          <div className="rounded-3xl border border-[#F3C8D8] bg-white p-5 sm:p-8 shadow-[0_12px_34px_-16px_rgba(194,45,107,0.18)] lg:col-span-7">
+          <div className="min-w-0 rounded-3xl border border-[#F3C8D8] bg-white p-5 sm:p-8 shadow-[0_12px_34px_-16px_rgba(194,45,107,0.18)] lg:col-span-7">
             {/* 1. Chosen Services */}
             <div>
               <div className="flex flex-wrap items-center justify-between gap-2">
@@ -179,7 +179,7 @@ export function BookingSection({ booking, onChangeBooking }: BookingSectionProps
                       key={treatment.id}
                       type="button"
                       onClick={() => handleToggleTreatmentQuick(treatment)}
-                      className={`inline-flex min-h-[42px] items-center gap-1.5 rounded-2xl border px-3 py-2 text-xs font-semibold transition-all whitespace-nowrap active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C22D6B] ${
+                      className={`inline-flex min-h-[42px] items-center gap-1.5 rounded-2xl border px-3 py-2 text-xs font-semibold transition-all active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C22D6B] ${
                         selected
                           ? 'border-[#C22D6B] bg-[#C22D6B] text-white shadow-xs'
                           : 'border-[#F3C8D8] bg-[#FFF7FA] text-[#6B3B50] hover:bg-[#FFEBF2]'
@@ -503,7 +503,7 @@ export function BookingSection({ booking, onChangeBooking }: BookingSectionProps
           </div>
 
           {/* Right Live Dispatch Panel (Sticky on Desktop, Instant Action on Mobile) */}
-          <div className="rounded-3xl border border-[#F3C8D8] bg-white p-5 sm:p-7 shadow-[0_12px_34px_-16px_rgba(194,45,107,0.2)] lg:col-span-5 lg:sticky lg:top-24">
+          <div className="min-w-0 rounded-3xl border border-[#F3C8D8] bg-white p-5 sm:p-7 shadow-[0_12px_34px_-16px_rgba(194,45,107,0.2)] lg:col-span-5 lg:sticky lg:top-24">
             <div className="border-b border-[#FCE4ED] pb-4">
               <p className="text-xs font-semibold text-[#C22D6B]">
                 Choose Booking Channel
@@ -550,19 +550,19 @@ export function BookingSection({ booking, onChangeBooking }: BookingSectionProps
 
             {/* Quick Summary Strip */}
             <div className="mt-4 rounded-2xl bg-[#FFF6FA] p-3 border border-[#FCE4ED] text-xs text-[#6B3B50] space-y-1">
-              <div className="flex justify-between">
+              <div className="flex min-w-0 justify-between gap-3">
                 <span className="text-[#8B4D67]">Client:</span>
                 <span className="font-semibold text-[#421C2D] truncate">
                   {booking.clientName.trim() || 'Guest'}
                 </span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex min-w-0 justify-between gap-3">
                 <span className="text-[#8B4D67]">Date &amp; Time:</span>
                 <span className="font-semibold text-[#421C2D] tabular-nums">
                   {booking.preferredDate || 'Not selected'} · {booking.timeWindow}
                 </span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex min-w-0 justify-between gap-3">
                 <span className="text-[#8B4D67]">Services:</span>
                 <span className="font-semibold text-[#C22D6B] tabular-nums">
                   {totalItemsCount} selected

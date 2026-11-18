@@ -86,8 +86,8 @@ export function TreatmentsSection({
   return (
     <section id="treatments" className="border-b border-[#F5D3DF] bg-[#FFF7FA] py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
+        <div className="flex min-w-0 flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div className="min-w-0 max-w-2xl">
             <p className="text-xs font-semibold tracking-wide text-[#C22D6B]">
               Spa &amp; Beauty Menu
             </p>
@@ -103,7 +103,7 @@ export function TreatmentsSection({
           <div
             role="tablist"
             aria-label="Filter treatments by category"
-            className="flex overflow-x-auto no-scrollbar items-center gap-1.5 rounded-2xl bg-[#FFE6EF] p-1.5 self-start -mx-1 px-1 sm:mx-0 sm:flex-wrap"
+            className="flex w-full min-w-0 max-w-full overflow-x-auto no-scrollbar items-center gap-1.5 rounded-2xl bg-[#FFE6EF] p-1.5 md:w-auto md:flex-wrap"
           >
             {FILTER_OPTIONS.map((category) => {
               const active = activeFilter === category;
@@ -138,7 +138,7 @@ export function TreatmentsSection({
             return (
               <article
                 key={treatment.id}
-                className={`flex flex-col justify-between rounded-3xl border p-5 sm:p-6 transition-all duration-150 ${
+                className={`flex min-w-0 flex-col justify-between rounded-3xl border p-5 sm:p-6 transition-all duration-150 ${
                   isSelected
                     ? 'border-[#C22D6B] bg-[#FFF0F6] shadow-[0_12px_30px_-14px_rgba(194,45,107,0.28)]'
                     : 'border-[#F3C8D8] bg-white hover:-translate-y-0.5 hover:border-[#E89EB9] shadow-[0_8px_24px_-14px_rgba(194,45,107,0.12)]'
@@ -258,8 +258,8 @@ export function TreatmentsSection({
           id="price-list"
           className="mt-12 sm:mt-16 rounded-3xl border border-[#F3C8D8] bg-white p-4 sm:p-8 shadow-[0_12px_34px_-16px_rgba(194,45,107,0.16)]"
         >
-          <div className="flex flex-col gap-4 border-b border-[#FCE4ED] pb-5 md:flex-row md:items-end md:justify-between">
-            <div>
+          <div className="flex min-w-0 flex-col gap-4 border-b border-[#FCE4ED] pb-5 md:flex-row md:items-end md:justify-between">
+            <div className="min-w-0">
               <p className="text-xs font-semibold tracking-wide text-[#C22D6B]">
                 Transparent Beauty Rates · Zambian Kwacha
               </p>
@@ -275,7 +275,7 @@ export function TreatmentsSection({
             <div
               role="tablist"
               aria-label="Filter beauty price list"
-              className="flex overflow-x-auto no-scrollbar items-center gap-1.5 rounded-2xl bg-[#FFE6EF] p-1.5 self-start -mx-1 px-1 sm:mx-0 sm:flex-wrap"
+              className="flex w-full min-w-0 max-w-full overflow-x-auto no-scrollbar items-center gap-1.5 rounded-2xl bg-[#FFE6EF] p-1.5 md:w-auto md:flex-wrap"
             >
               {PRICE_FILTERS.map((tab) => {
                 const active = priceFilter === tab.value;

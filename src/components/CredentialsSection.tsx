@@ -9,7 +9,7 @@ export function CredentialsSection() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
-          <div className="lg:col-span-5">
+          <div className="min-w-0 lg:col-span-5">
             <p className="text-xs font-semibold tracking-wide text-[#C22D6B]">
               Meet Your Therapist
             </p>
@@ -35,7 +35,7 @@ export function CredentialsSection() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:col-span-7">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:col-span-7 min-w-0">
             <div className="rounded-3xl border border-[#F3C8D8] bg-white p-5 sm:p-6 shadow-[0_8px_24px_-14px_rgba(194,45,107,0.14)]">
               <div className="flex items-center gap-2.5">
                 <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#FFEBF2] text-[#C22D6B]">
@@ -76,7 +76,7 @@ export function CredentialsSection() {
               <ul className="mt-3.5 space-y-2 text-xs text-[#6B3B50]">
                 <li className="flex items-center gap-2">
                   <MapPin className="h-3.5 w-3.5 shrink-0 text-[#C22D6B]" aria-hidden="true" />
-                  <span>{THERAPIST_PROFILE.address}</span>
+                  <span className="min-w-0">{THERAPIST_PROFILE.address}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Phone className="h-3.5 w-3.5 shrink-0 text-[#C22D6B]" aria-hidden="true" />
@@ -88,7 +88,7 @@ export function CredentialsSection() {
                   <Mail className="h-3.5 w-3.5 shrink-0 text-[#C22D6B]" aria-hidden="true" />
                   <a
                     href={`mailto:${THERAPIST_PROFILE.email}`}
-                    className="underline decoration-[#E2A5BD] underline-offset-4 hover:text-[#C22D6B]"
+                    className="min-w-0 break-all underline decoration-[#E2A5BD] underline-offset-4 hover:text-[#C22D6B]"
                   >
                     {THERAPIST_PROFILE.email}
                   </a>

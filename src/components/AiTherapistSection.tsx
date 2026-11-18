@@ -133,7 +133,7 @@ export function AiTherapistSection({
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
+          <div className="min-w-0 max-w-2xl">
             <p className="text-xs font-semibold tracking-wide text-[#C22D6B]">
               Kind Skincare &amp; Wellness Chat
             </p>
@@ -157,7 +157,7 @@ export function AiTherapistSection({
 
         <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-stretch">
           {/* Quick-Ask Topics Panel */}
-          <div className="flex flex-col justify-between rounded-3xl border border-[#F3C8D8] bg-[#FFEBF2]/70 p-4 sm:p-6 lg:col-span-5">
+          <div className="flex min-w-0 flex-col justify-between rounded-3xl border border-[#F3C8D8] bg-[#FFEBF2]/70 p-4 sm:p-6 lg:col-span-5">
             <div>
               <div className="flex items-center justify-between gap-3">
                 <h3 className="font-display text-lg sm:text-2xl font-semibold text-[#421C2D]">
@@ -170,7 +170,7 @@ export function AiTherapistSection({
               <div
                 role="tablist"
                 aria-label="Filter wellness prompt topics"
-                className="mt-3 flex overflow-x-auto no-scrollbar items-center gap-1 rounded-2xl bg-[#FAD8E5] p-1 -mx-1 px-1 sm:mx-0"
+                className="mt-3 flex w-full max-w-full overflow-x-auto no-scrollbar items-center gap-1 rounded-2xl bg-[#FAD8E5] p-1 sm:w-fit"
               >
                 {(['All', 'Healthy Skin', 'Healthy Living'] as const).map((tab) => {
                   const active = topicFilter === tab;
@@ -194,14 +194,14 @@ export function AiTherapistSection({
               </div>
 
               {/* Prompt buttons - Horizontal swipeable on mobile, list on tablet/desktop */}
-              <div className="mt-4 flex sm:flex-col overflow-x-auto no-scrollbar gap-2 sm:gap-0 sm:divide-y sm:divide-[#F4CEDC] pb-2 sm:pb-0 -mx-1 px-1 sm:mx-0">
+              <div className="mt-4 flex w-full max-w-full sm:flex-col overflow-x-auto no-scrollbar snap-x gap-2 sm:gap-0 sm:divide-y sm:divide-[#F4CEDC] pb-2 sm:pb-0">
                 {visiblePrompts.map((prompt) => (
                   <button
                     key={prompt.id}
                     type="button"
                     disabled={isLoading}
                     onClick={() => void sendQuestion(prompt.question)}
-                    className="group flex flex-col sm:flex-row min-w-[200px] sm:min-w-0 sm:w-full items-start sm:items-center justify-between gap-2 rounded-2xl border border-[#F4CEDC] sm:border-0 bg-white sm:bg-transparent p-3 sm:py-2.5 sm:px-2 transition-all hover:bg-white/80 disabled:opacity-60 text-left active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C22D6B]"
+                    className="group flex flex-col sm:flex-row w-[210px] shrink-0 snap-start sm:w-full sm:shrink items-start sm:items-center justify-between gap-2 rounded-2xl border border-[#F4CEDC] sm:border-0 bg-white sm:bg-transparent p-3 sm:py-2.5 sm:px-2 transition-all hover:bg-white/80 disabled:opacity-60 text-left active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C22D6B]"
                   >
                     <div className="min-w-0">
                       <p className="text-[11px] font-medium text-[#C22D6B]">
@@ -226,7 +226,7 @@ export function AiTherapistSection({
           </div>
 
           {/* Right Live AI Conversation */}
-          <div className="flex flex-col justify-between rounded-3xl border border-[#F3C8D8] bg-white shadow-[0_12px_34px_-16px_rgba(194,45,107,0.18)] lg:col-span-7">
+          <div className="flex min-w-0 flex-col justify-between rounded-3xl border border-[#F3C8D8] bg-white shadow-[0_12px_34px_-16px_rgba(194,45,107,0.18)] lg:col-span-7">
             <div className="flex items-center gap-3 border-b border-[#FCE4ED] px-4 py-3 sm:px-6 sm:py-4">
               <TherapistAvatarIcon />
               <div>
