@@ -1,0 +1,6 @@
+{
+  "name": "Evita Sinzala — Spa & Skincare Studio",
+  "description": "Private spa and cosmetology booking in Siavonga, Zambia with direct WhatsApp scheduling and an AI Spa Therapist for healthy skin and wellness tips.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
